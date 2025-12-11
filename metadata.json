@@ -1,0 +1,7 @@
+{
+  "name": "VELTRIO",
+  "description": "A web application that provides real-time language translation and sentiment analysis for text and speech input, leveraging AI to facilitate global communication and understand emotional tone.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
