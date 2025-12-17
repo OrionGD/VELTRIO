@@ -1,90 +1,227 @@
 # VELTRIO 🌐
 
-**AI-Powered Real-time Translation & Sentiment Analysis**
+**AI‑Powered Real‑time Translation, Sentiment Analysis & Voice AI**
 
-VELTRIO is a sophisticated web application designed to bridge communication gaps by providing real-time language translation, sentiment analysis, and interactive AI voice conversations. Leveraging the power of Google's **Gemini 2.5 Flash** models, VELTRIO offers deep insights into both the literal meaning and emotional context of global communication.
+VELTRIO is a modern web application built to remove language barriers by combining real‑time translation, sentiment analysis, and interactive AI voice conversations. Powered by Google’s **Gemini 2.5 Flash** models, it delivers not only accurate translations but also meaningful insight into the emotional tone behind communication.
+
+---
+
+## 🔗 Overview
+
+VELTRIO enables users to communicate seamlessly across languages while understanding *how* something is said, not just *what* is said. The platform supports text, speech, and live AI‑driven voice conversations, wrapped in a polished, responsive user experience.
+
+---
+
+## 🛡️ Badges
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?logo=tailwind-css&logoColor=white)
-![Gemini AI](https://img.shields.io/badge/Google_GenAI-Gemini_2.5-8E75B2?logo=google&logoColor=white)
+![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react\&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript\&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?logo=tailwind-css\&logoColor=white)
+![Gemini AI](https://img.shields.io/badge/Google_GenAI-Gemini_2.5-8E75B2?logo=google\&logoColor=white)
 
-## ✨ Key Features
+---
+
+## ✨ Core Features
 
 ### 🗣️ Smart Translator
-*   **Multi-modal Input:** Type text or use real-time speech recognition.
-*   **Intelligent Language Detection:** Automatically defaults to your browser's language for speech input.
-*   **Sentiment Analysis:** Instantly analyzes the emotional tone (Positive, Negative, Neutral) of your text and provides context.
-*   **Text-to-Speech (TTS):** Listen to translations with adjustable playback speed (0.5x - 2x).
-*   **Translation History:** Automatically saves your recent translations for quick reference.
 
-### 🎙️ Live Conversation
-*   **Bidirectional Voice Chat:** Engage in natural, low-latency voice-to-voice conversations with Gemini.
-*   **Real-time Transcription:** View live transcripts of both your input and the AI's response.
-*   **Visual Feedback:** Dynamic UI indicators for connection status, listening, and speaking states.
+* Multi‑modal input with text and real‑time speech recognition
+* Automatic language detection based on browser settings
+* Instant sentiment analysis (Positive, Neutral, Negative) with contextual explanation
+* Text‑to‑Speech playback with adjustable speed (0.5×–2×)
+* Local translation history for quick reference
 
-### 🎨 Modern UI/UX
-*   **Dark/Light Mode:** Fully responsive interface with seamless theme switching.
-*   **Glassmorphism Design:** A polished aesthetic using backdrop blurs and smooth gradients.
-*   **Mobile-First:** Optimized for performance across desktop and mobile devices.
+### 🎙️ Live AI Conversation
 
-## 🛠️ Technology Stack
+* Low‑latency, bidirectional voice‑to‑voice interaction with Gemini Live
+* Real‑time transcription for both user input and AI responses
+* Dynamic visual indicators for listening, speaking, and connection states
 
-*   **Frontend:** React 19, TypeScript
-*   **Styling:** Tailwind CSS
-*   **AI SDK:** `@google/genai` (Google GenAI SDK)
-*   **Models:**
-    *   `gemini-2.5-flash` (Text Translation & Sentiment)
-    *   `gemini-2.5-flash-native-audio-preview-09-2025` (Live Audio Streaming)
-*   **Audio Processing:** Web Audio API (Raw PCM streaming, AudioContext)
-*   **Build Tool:** Vite
+### 🎨 User Experience
+
+* Dark and Light mode with smooth transitions
+* Glassmorphism‑inspired UI using gradients and backdrop blur
+* Mobile‑first, fully responsive design
+
+---
+
+## 🧠 Technology Stack
+
+**Frontend**
+
+* React 19
+* TypeScript
+* Tailwind CSS
+
+**AI & Audio**
+
+* Google GenAI SDK (`@google/genai`)
+* Gemini Models:
+
+  * `gemini-2.5-flash` – Translation & Sentiment Analysis
+  * `gemini-2.5-flash-native-audio-preview-09-2025` – Live Audio Streaming
+* Web Audio API (raw PCM streaming, AudioContext)
+
+**Tooling**
+
+* Vite (Build Tool)
+
+---
+
+## 🏗️ Architecture Highlights
+
+* **Singleton AI Client** for efficient Gemini SDK usage
+* Structured JSON outputs for reliable sentiment validation
+* Custom audio pipeline with Float32 ↔ Int16 PCM conversion
+* State‑driven voice conversation lifecycle (idle → connecting → active → error)
+* Gapless audio playback queue for natural AI responses
+
+  ### System Architecture
+
+```mermaid
+graph TD
+    Client((User))
+    
+    subgraph Frontend [React Application]
+        Router[App Router]
+        TV[Translator View]
+        CV[Conversation View]
+        
+        subgraph Services
+            GS[Gemini Service]
+            AS[Audio Utils]
+        end
+    end
+    
+    subgraph BrowserAPI [Browser APIs]
+        SR[Speech Recognition]
+        WA[Web Audio API]
+    end
+    
+    subgraph Cloud [Google Cloud]
+        Flash[Gemini 2.5 Flash]
+        Live[Gemini Live API]
+    end
+
+    Client -->|Interacts| Router
+    Router --> TV
+    Router --> CV
+    
+    TV -->|Text/Context| GS
+    TV -->|Dictation| SR
+    GS -->|Generate Content| Flash
+    
+    CV -->|Audio Stream| WA
+    CV -->|WebSocket| Live
+    WA -->|PCM Data| AS
+```
+
+
+## 📁 Project Structure
+
+```
+src/
+├── components/        # UI components & views
+├── services/          # Gemini API integration logic
+├── utils/             # Audio & helper utilities
+├── types.ts           # Shared TypeScript types
+├── constants.ts       # Configuration constants
+├── App.tsx            # Application shell & routing
+└── main.tsx           # Entry point
+```
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-*   Node.js (v18 or higher)
-*   A valid API Key.
+
+* Node.js v18 or higher
+* Google GenAI API Key
 
 ### Installation
 
-1.  **Clone the repository**
-    ```bash
-    git clone https://github.com/yourusername/veltrio.git
-    cd veltrio
-    ```
+```bash
+git clone https://github.com/yourusername/veltrio.git
+cd veltrio
+npm install
+```
 
-2.  **Install dependencies**
-    ```bash
-    npm install
-    ```
+### Environment Configuration
 
-3.  **Configure Environment Variables**
-    Create a `.env` file in the root directory and add your API key:
-    ```env
-    API_KEY=your_google_genai_api_key_here
-    ```
-    *(Note: Ensure your bundler is configured to expose this key as `process.env.API_KEY`)*
+Create a `.env` file in the project root:
 
-4.  **Run the development server**
-    ```bash
-    npm run dev
-    ```
+```env
+API_KEY=your_google_genai_api_key_here
+```
 
-## 👥 Meet the Team
+Ensure your bundler exposes this key as `process.env.API_KEY`.
 
-VELTRIO was built by a dedicated team of engineers:
+### Run Development Server
 
-| Team Member | Role | Contribution |
-| :--- | :--- | :--- |
-| **Arjun S N** | Lead Developer & Architect | System architecture, state management strategies, and SDK integration patterns. |
-| **Aravindan K** | AI Integration Specialist | Gemini Live API implementation, raw PCM audio streaming, and speech pipeline optimization. |
-| **Godfrey T R** | Frontend Engineer & UI/UX | User interface design, responsive layouts, visual sentiment components, and landing page aesthetics. |
+```bash
+npm run dev
+```
 
-## 📄 License
+## Product Roadmap
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```mermaid
+timeline
+    title VELTRIO Strategic Development Plan
+    Phase 1 (Current) : MVP Launch
+                      : Real-time Text/Speech Translation
+                      : Sentiment Analysis Engine
+                      : Live Audio Conversation
+    Phase 2 (Q3 2025) : Multimodal Evolution
+                      : Live Video Stream Analysis
+                      : Image-to-Text Translation
+                      : Document Upload Support
+    Phase 3 (Q4 2025) : Platform Maturity
+                      : Progressive Web App (PWA)
+                      : Offline Mode via Local Storage
+                      : User Authentication & Cloud Sync
+    Phase 4 (2026+)   : Ecosystem Expansion
+                      : Enterprise API Integration
+                      : Real-time Meeting Assistant
+                      : Multi-speaker Diarization
+```
+
+### Phase Breakdown
+
+*   **Phase 1: MVP Launch (Completed)**
+    *   Core translation engine using Gemini 2.5 Flash.
+    *   Sentiment analysis with visual feedback.
+    *   Bidirectional voice chat using Gemini Live API.
+
+*   **Phase 2: Multimodal Evolution**
+    *   Integration of video stream input for visual context translation using Gemini's multimodal capabilities.
+    *   Support for uploading images for text extraction and translation.
+    *   Live camera integration for sign language or object detection translation.
+
+*   **Phase 3: Platform Maturity**
+    *   **PWA**: Converting the app into a Progressive Web App for installability on mobile and desktop.
+    *   **Offline Mode**: Caching translation models or history for use without internet access.
+    *   **User Accounts**: Implementation of Firebase or Supabase for cross-device history synchronization.
+
+*   **Phase 4: Ecosystem Expansion**
+    *   **Meeting Assistant**: Real-time transcription and summary of multi-person meetings.
+    *   **Diarization**: Distinguishing between different speakers in the Live Conversation mode.
+
+## 👥 Team
+
+| Name            | Role                       | Responsibility                                                |
+| --------------- | -------------------------- | ------------------------------------------------------------- |
+| **Arjun S N**   | Lead Developer & Architect | System architecture, state management, Gemini SDK integration |
+| **Aravindan K** | AI Integration Specialist  | Gemini Live API, raw PCM audio streaming, speech pipeline     |
+| **Godfrey T R** | Frontend Engineer & UI/UX  | Responsive UI, landing page, sentiment visualization          |
 
 ---
 
-&copy; 2025 VELTRIO.
+## 📄 License
+
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
+
+---
+
+© 2025 **VELTRIO**. All rights reserved.
