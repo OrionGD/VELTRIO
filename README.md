@@ -44,7 +44,6 @@ VELTRIO is a sophisticated web application designed to bridge communication gaps
 
 ### Prerequisites
 *   Node.js (v18 or higher)
-*   A Google Cloud Project with the **Gemini API** enabled.
 *   A valid API Key.
 
 ### Installation
@@ -88,4 +87,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-&copy; 2025 VELTRIO. Powered by Google Gemini.
+&copy; 2025 VELTRIO.
