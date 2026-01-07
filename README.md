@@ -173,11 +173,11 @@ timeline
                       : Real-time Text/Speech Translation
                       : Sentiment Analysis Engine
                       : Live Audio Conversation
-    Phase 2 (Q3 2025) : Multimodal Evolution
+    Phase 2 (Q3 2026) : Multimodal Evolution
                       : Live Video Stream Analysis
                       : Image-to-Text Translation
                       : Document Upload Support
-    Phase 3 (Q4 2025) : Platform Maturity
+    Phase 3 (Q4 2026) : Platform Maturity
                       : Progressive Web App (PWA)
                       : Offline Mode via Local Storage
                       : User Authentication & Cloud Sync
